@@ -186,7 +186,7 @@
         }
 
         function togglePlantDetails(index) {
-            const details = document.querySelector([data-details="${index}"]);
+            const details = document.querySelector(`[data-details="${index}"]`);
             const currentlyExpanded = details.classList.contains('expanded');
             
             // Close all plant details
