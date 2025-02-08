@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Plant Care Guide!</h1>
+        <p>Select a plant to see its optimal care conditions.</p>
+    </header>
+
+    <section>
+        <label for="plantSelect">Choose a plant:</label>
+        <select id="plantSelect">
+            <option value="">--Select a plant--</option>
+            <option value="succulent">Succulent</option>
+            <option value="rose">Rose</option>
+            <option value="orchid">Orchid</option>
+        </select>
+    </section>
+
+    <section id="plantInfo">
+        <h2>Plant Details</h2>
+        <p id="soilType"></p>
+        <p id="waterSchedule"></p>
+        <p id="funFact"></p>
+        <img id="cuteCharacter" src="cute-character.png" alt="Cute Plant Character">
+    </section>
+
+    <button id="waterReminder">Set Watering Reminder</button>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
+<button id="darkModeToggle">🌙 Toggle Dark Mode</button>
