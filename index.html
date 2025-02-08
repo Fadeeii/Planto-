@@ -3,164 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Care Guide</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Simple Plant Care Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2e7d32;
+        }
+
+        .notification-banner {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .plant-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .plant-name {
+            color: #2e7d32;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .plant-info {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .details-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .enable-notifications {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .enable-notifications:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Planto🍃</h1>
-        <p>Select a plant to see its optimal care conditions.</p>
-    </header>
+    <div class="header">
+        <h1>Planto🍃</h1>
+        <p>Your simple plant care companion</p>
+    </div>
 
-    <section>
-        <label for="plantSelect">Choose a plant:</label>
-        <select id="plantSelect">
-            <option value="">--Select a plant--</option>
-            <option value="succulent">Succulent</option>
-            <option value="rose">Rose</option>
-            <option value="orchid">Orchid</option>
-        </select>
-    </section>
+    <div class="notification-banner" id="notificationBanner">
+        <p>Would you like to receive watering reminders?</p>
+        <button class="enable-notifications" onclick="enableNotifications()">Sure!</button>
+    </div>
 
-    <section id="plantInfo">
-        <h2>Plant Details</h2>
-        <p id="soilType"></p>
-        <p id="waterSchedule"></p>
-        <p id="funFact"></p>
-        <img id="cuteCharacter" src="cute-character.png" alt="Cute Plant Character">
-    </section>
+    <div class="plant-grid" id="plantGrid"></div>
 
-    <button id="waterReminder">Set Watering Reminder</button>
+    <div class="details-panel" id="detailsPanel"></div>
 
-    <script src="java.js"></script>
-    <style>body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f8ff;
-}
+    <script>
+        const plants = [
+            {
+                name: "Snake Plant",
+                image: "/api/placeholder/300/200",
+                soil: "Well-draining potting mix",
+                watering: "Every 2-8 weeks",
+                light: "Low to bright indirect light",
+                fact: "Can survive in very low light conditions and helps purify indoor air"
+            },
+            {
+                name: "Monstera",
+                image: "https://m.media-amazon.com/images/I/71w2o1N-VmL.jpg",
+                soil: "Rich, well-draining potting mix",
+                watering: "Weekly in growing season",
+                light: "Bright indirect light",
+                fact: "Named 'deliciosa' for its edible fruit that tastes like a mix of pineapple and banana"
+            },
+            {
+                name: "Peace Lily",
+                image: "/api/placeholder/300/200",
+                soil: "Moisture-retaining potting mix",
+                watering: "Weekly, or when leaves droop",
+                light: "Low to moderate indirect light",
+                fact: "Known for its air-purifying abilities"
+            },
+            {
+                name: "Peace Lily",
+                image: "/api/placeholder/300/200",
+                soil: "Moisture-retaining potting mix",
+                watering: "Weekly, or when leaves droop",
+                light: "Low to moderate indirect light",
+                fact: "Known for its air-purifying abilities"
+            }
+        ];
 
-header {
-    background-color: #6a994e;
-    color: white;
-    padding: 20px;
-}
-
-section {
-    margin: 20px;
-}
-
-button {
-    background-color: #ffcc00;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#cuteCharacter {
-    width: 150px;
-    margin-top: 20px;
-}</style>
-    <script>document.getElementById("plantSelect").addEventListener("change", function() {
-    const plant = this.value;
-    const soilType = document.getElementById("soilType");
-    const waterSchedule = document.getElementById("waterSchedule");
-    const funFact = document.getElementById("funFact");
-
-    const plantData = {
-        succulent: {
-            soil: "Well-draining cactus soil.",
-            water: "Water once every two weeks.",
-            fact: "Succulents store water in their leaves!"
-        },
-        rose: {
-            soil: "Loamy soil with good drainage.",
-            water: "Water every 2-3 days.",
-            fact: "Roses have been around for over 35 million years!"
-        },
-        orchid: {
-            soil: "Bark-based orchid mix.",
-            water: "Water once a week.",
-            fact: "Orchids can live for decades if cared for properly!"
+        function createPlantCards() {
+            const plantGrid = document.getElementById('plantGrid');
+            plants.forEach(plant => {
+                const card = document.createElement('div');
+                card.className = 'plant-card';
+                card.innerHTML = `
+                    <img src="${plant.image}" alt="${plant.name}" class="plant-image">
+                    <div class="plant-name">${plant.name}</div>
+                    <div class="plant-info">Watering: ${plant.watering}</div>
+                `;
+                card.onclick = () => showPlantDetails(plant);
+                plantGrid.appendChild(card);
+            });
         }
-    };
 
-    if (plantData[plant]) {
-        soilType.textContent = "Soil Type: " + plantData[plant].soil;
-        waterSchedule.textContent = "Watering: " + plantData[plant].water;
-        funFact.textContent = "Fun Fact: " + plantData[plant].fact;
-    } else {
-        soilType.textContent = "";
-        waterSchedule.textContent = "";
-        funFact.textContent = "";
-    }
-});
+        function showPlantDetails(plant) {
+            const detailsPanel = document.getElementById('detailsPanel');
+            detailsPanel.style.display = 'block';
+            detailsPanel.innerHTML = `
+                <h2>${plant.name}</h2>
+                <p><strong>Soil Type:</strong> ${plant.soil}</p>
+                <p><strong>Watering Schedule:</strong> ${plant.watering}</p>
+                <p><strong>Light Requirements:</strong> ${plant.light}</p>
+                <p><strong>Fun Fact:</strong> ${plant.fact}</p>
+            `;
+            detailsPanel.scrollIntoView({ behavior: 'smooth' });
+        }
 
-document.getElementById("waterReminder").addEventListener("click", function() {
-    alert("Don't forget to water your plant!");
-});
-// Check if notifications are allowed
-if (Notification.permission === "default") {
-    Notification.requestPermission();
-}
+        function enableNotifications() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        document.getElementById('notificationBanner').style.display = 'none';
+                        alert('Notifications enabled! You will receive watering reminders.');
+                    }
+                });
+            }
+        }
 
-document.getElementById("waterReminder").addEventListener("click", function() {
-    if (Notification.permission === "granted") {
-        new Notification("💧 Time to water your plant!", {
-            body: "Stay consistent to keep your plant healthy!",
-            icon: "cute-character.png"
-        });
-    } else {
-        alert("Enable notifications to receive watering reminders!");
-    }
-});
-const funFacts = [
-    "Plants release oxygen and purify the air!",
-    "Some plants can recognize their siblings!",
-    "Bananas are actually classified as herbs!",
-    "Aloe Vera can survive for months without water!"
-];
-
-function showRandomFunFact() {
-    const funFact = document.getElementById("funFact");
-    funFact.textContent = "Fun Fact: " + funFacts[Math.floor(Math.random() * funFacts.length)];
-    funFact.style.animation = "fadeIn 0.5s ease-in-out";
-}
-
-// Show a new fun fact every 10 seconds
-setInterval(showRandomFunFact, 10000);
-const reminderButton = document.getElementById("waterReminder");
-
-// Add sound effect
-const dingSound = new Audio("ding.mp3");
-
-reminderButton.addEventListener("click", function() {
-    if (Notification.permission === "granted") {
-        new Notification("💧 Time to water your plant!", {
-            body: "Stay consistent to keep your plant healthy!",
-            icon: "cute-character.png"
-        });
-        dingSound.play(); // Play sound when notification appears
-    } else {
-        alert("Enable notifications to receive watering reminders!");
-    }
-});
-const darkModeToggle = document.getElementById("darkModeToggle");
-
-darkModeToggle.addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode");
-    document.querySelector("header").classList.toggle("dark-mode");
-
-    // Save user preference
-    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-});
-
-// Load user preference on page refresh
-if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark-mode");
-    document.querySelector("header").classList.add("dark-mode");
-}</script>
-    
+        // Initialize the page
+        createPlantCards();
+    </script>
 </body>
 </html>
-<button id="darkModeToggle">🌙 Toggle Dark Mode</button>
