@@ -147,7 +147,7 @@
                 `;
                 
                 plantsGrid.appendChild(plantCard);
-            });
+            });a
         }
 
         // Close modal when clicking outside
