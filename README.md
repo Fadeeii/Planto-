@@ -23,5 +23,4 @@ For Software:
   - HTML
   - Css
   - Javascript
-- Framework ysed:
-  - Node.JS
+
