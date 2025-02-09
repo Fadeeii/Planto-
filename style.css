@@ -1,4 +1,5 @@
 <style>
+        /* Existing styles remain the same until plant-details */
         body {
             margin: 0;
             min-height: 100vh;
@@ -53,8 +54,9 @@
 
         .grid {
             display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            padding: 20px;
         }
 
         @media (min-width: 768px) {
@@ -101,28 +103,74 @@
             margin-bottom: 1rem;
         }
 
-        .plant-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s;
-        }
-
-        .plant-details.expanded {
-            max-height: 24rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .plant-details p {
-            margin: 0 0 0.5rem 0;
-        }
-
-        .plant-details .label {
-            font-weight: 600;
-        }
-
         .hidden {
             display: none;
+        }
+
+        /* New Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            width: 500px;
+            z-index: 1001;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            color: #166534;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4b5563;
+            padding: 0.5rem;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content p {
+            margin: 0.75rem 0;
+            color: #4b5563;
+        }
+
+        .modal-content .label {
+            color: #166534;
+            font-weight: 600;
         }
     </style>
