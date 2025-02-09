@@ -1,4 +1,6 @@
 # Planto🍃
+![readmepic](https://github.com/user-attachments/assets/2a5f5f9c-4071-4383-9dd5-d10a7dca6a6a)
+
 
 A website that allows you to keep track of your plant's growth.
 
