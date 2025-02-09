@@ -1,9 +1,4 @@
 # Planto🍃
-![readmepic](https://github.com/user-attachments/assets/2a5f5f9c-4071-4383-9dd5-d10a7dca6a6a)
-
-
-A website that allows you to keep track of your plant's growth.
-
 ## Basic Details
 ### Team Name: Scene 😜
 
@@ -18,6 +13,8 @@ We often adopt cute plantos but forget to take care of them, also we hardly put 
 ### And the solution is!!😆
 An aesthetic website that provides all the necessary informations about your plant, also reminds you to water them timely aaannnddddd yeah also equips you with a fun fact 😉 
 
+![WhatsApp Image 2025-02-09 at 11 45 15 AM](https://github.com/user-attachments/assets/c02e1203-3c80-4c59-9d43-cad39ac1116f)
+
 ## Technical Details
 ### Technologies Used 👀
 For Software:
@@ -26,3 +23,6 @@ For Software:
   - Css
   - Javascript
 
+https://github.com/user-attachments/assets/3627b78d-ddca-4eda-8fb9-555e59b5cf48
+
+Made with 💖 by Scene for Tink Her Hack ✨
